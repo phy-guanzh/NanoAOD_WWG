@@ -91,7 +91,7 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
             f.write("scramv1 project CMSSW CMSSW_10_6_0\n")
             f.write("cd CMSSW_10_6_0/src\n")
             f.write("eval `scramv1 runtime -sh`\n\n")
-            f.write("git clone https://github.com/Senphy/nanoAOD-WVG.git PhysicsTools/NanoAODTools\n")
+            f.write("git clone https://github.com/phy-guanzh/nanoAOD-WVG.git PhysicsTools/NanoAODTools\n")
             f.write("scram b -j4\n\n")
             f.write("cd PhysicsTools/NanoAODTools/WZG_selector\n")
             # f.write("cp ${initial_path}/filepath_"+args.name+"_"+args.year+".txt .\n" )
