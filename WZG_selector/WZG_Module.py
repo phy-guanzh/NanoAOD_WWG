@@ -399,7 +399,7 @@ print "different_charge_reject","\t","=","\t",different_charge_reject
 print "minus_mll ","\t","=","\t",minus_mll 
 print "all reject",none_photon_reject+none_2lepton_reject+different_charge_reject+minus_mll
 
-print "nfile",nfile
+
 print "emu_pass","\t","=","\t",emu_pass
 print "ee_pass","\t","=","\t",ee_pass
 print "mumu_pass","\t","=","\t",mumu_pass
