@@ -46,6 +46,10 @@ if args.file == '':
         if args.year == '2016': dataset = "/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8_ext1-v1/NANOAODSIM"
     elif args.name == 'ttZJets':
         if args.year == '2016': dataset = "/ttZJets_13TeV_madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"
+    elif args.name == 'SingleElectron':
+        if args.year == '2017': dataset = "/SingleElectron/Run2017B-Nano1June2019-v1/NANOAOD"
+    elif args.name == 'SingleMuon':
+        if args.year == '2017': dataset = "/SingleMuon/Run2017B-Nano1June2019-v1/NANOAOD"
     else:
         print "unknown dataset name"
         sys.exit(0)
@@ -97,21 +101,24 @@ else:
 
 
 
+print "MET_pass","\t","=","\t",MET_pass
+print "muon_pass","\t","=","\t",muon_pass
+print "electron_pass","\t","=","\t",electron_pass
+print "photon_pass","\t","=","\t",photon_pass
+print
+print "none_photon_reject","\t","=","\t",none_photon_reject
+print "none_lepton_reject","\t","=","\t",none_lepton_reject
+print "none_2lepton_reject","\t","=","\t",none_2lepton_reject
+print "different_charge_reject","\t","=","\t",different_charge_reject
+print "minus_mll ","\t","=","\t",minus_mll
+print "all reject",none_photon_reject+none_2lepton_reject+different_charge_reject+minus_mll
 
-print "MET_pass","\t","=","\t",WZG.MET_pass
-print "muon_pass","\t","=","\t",WZG.muon_pass 
-print "electron_pass","\t","=","\t",WZG.electron_pass
-print "photon_pass","\t","=","\t",WZG.photon_pass
-print
-print "none_photon_reject","\t","=","\t",WZG.none_photon_reject
-print "none_lepton_reject","\t","=","\t",WZG.none_lepton_reject
-print "none_3lepton_reject","\t","=","\t",WZG.none_3lepton_reject
-print "same_charge_reject_eee","\t","=","\t",WZG.same_charge_reject_eee
-print "same_charge_reject_mumumu","\t","=","\t",WZG.same_charge_reject_mumumu
-print
-print "emumu_pass","\t","=","\t",WZG.emumu_pass
-print "muee_pass","\t","=","\t",WZG.muee_pass
-print "eee_pass","\t","=","\t",WZG.eee_pass
-print "mumumu_pass","\t","=","\t",WZG.mumumu_pass
-print "btagjet_reject","\t","=","\t",WZG.btagjet_reject
-print "total processed events","\t","=","\t",WZG.test
+print "nfile",nfile
+print "emu_pass","\t","=","\t",emu_pass
+print "ee_pass","\t","=","\t",ee_pass
+print "mumu_pass","\t","=","\t",mumu_pass
+print "btagjet_reject","\t","=","\t",btagjet_reject
+print "deltar_reject","\t","=","\t",deltar_reject
+print "N+","\t","=","\t",n_posi
+print "N-","\t","=","\t",n_minus
+

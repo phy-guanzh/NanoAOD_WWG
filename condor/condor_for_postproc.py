@@ -12,7 +12,9 @@ parser.add_argument('-n', dest='name', default='test', help='dataset name in sho
     '\n tZq_ll'
     '\n WZ'
     '\n TTWJetsToLNu'
-    '\n ttZJets')
+    '\n ttZJets'
+    '\n SingleElectron'
+    '\n SingleMuon')
 args = parser.parse_args()
 
 print "year: ", args.year
@@ -29,6 +31,10 @@ elif args.name == 'TTWJetsToLNu':
     if args.year == '2016': dataset = "/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8_ext1-v1/NANOAODSIM"
 elif args.name == 'ttZJets':
     if args.year == '2016': dataset = "/ttZJets_13TeV_madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"
+elif args.name == 'SingleElectron':
+    if args.year == '2017': dataset = "/SingleElectron/Run2017B-Nano1June2019-v1/NANOAOD"
+elif args.name == 'SingleMuon':
+    if args.year == '2017': dataset = "/SingleMuon/Run2017B-Nano1June2019-v1/NANOAOD"
 else:
     print "unknown dataset name"
     sys.exit(0)

@@ -5,8 +5,9 @@ keep *muon*
 keep *photon*
 keep MET
 keep event
-keep *lepton*
-keep *channel*
 keep dilepton*
 keep *weight*
+keep wplus*
+keep wminus*
+keep Njets*
 # keep max*
