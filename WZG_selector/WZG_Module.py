@@ -405,5 +405,4 @@ print "ee_pass","\t","=","\t",ee_pass
 print "mumu_pass","\t","=","\t",mumu_pass
 print "btagjet_reject","\t","=","\t",btagjet_reject
 print "deltar_reject","\t","=","\t",deltar_reject
-print "N+","\t","=","\t",n_posi
-print "N-","\t","=","\t",n_minus
+
