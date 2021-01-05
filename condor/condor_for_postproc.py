@@ -60,7 +60,7 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
 
 
         # prepare submit code
-        Proxy_path = "/afs/cern.ch/user/s/sdeng/.krb5/x509up_u109738"
+        Proxy_path = "/local-scratch/zguan/proxy/x509up_u100814"
         with open ("submit_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".jdl","w+") as f:
             f.write("universe \t = vanilla\n")
             f.write("executable \t = wrapper_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".sh\n")
