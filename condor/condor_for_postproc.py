@@ -32,9 +32,9 @@ elif args.name == 'TTWJetsToLNu':
 elif args.name == 'ttZJets':
     if args.year == '2016': dataset = "/ttZJets_13TeV_madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"
 elif args.name == 'SingleElectron':
-    if args.year == '2017': dataset = "/SingleElectron/Run2017B-Nano1June2019-v1/NANOAOD"
+    if args.year == '2016': dataset = "/SingleElectron/Run2016C-05Feb2018-v2/NANOAOD"
 elif args.name == 'SingleMuon':
-    if args.year == '2017': dataset = "/SingleMuon/Run2017B-Nano1June2019-v1/NANOAOD"
+    if args.year == '2018': dataset = "/SingleMuon/Run2018C-Nano02Dec2019-v2/NANOAOD"
 else:
     print "unknown dataset name"
     sys.exit(0)
