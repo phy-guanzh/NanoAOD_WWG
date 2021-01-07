@@ -101,24 +101,25 @@ else:
 
 
 
-print "MET_pass","\t","=","\t",MET_pass
-print "muon_pass","\t","=","\t",muon_pass
-print "electron_pass","\t","=","\t",electron_pass
-print "photon_pass","\t","=","\t",photon_pass
+print "MET_pass","\t","=","\t",WZG.MET_pass
+print "muon_pass","\t","=","\t",WZG.muon_pass
+print "electron_pass","\t","=","\t",WZG.electron_pass
+print "photon_pass","\t","=","\t",WZG.photon_pass
 print
-print "none_photon_reject","\t","=","\t",none_photon_reject
-print "none_lepton_reject","\t","=","\t",none_lepton_reject
-print "none_2lepton_reject","\t","=","\t",none_2lepton_reject
-print "different_charge_reject","\t","=","\t",different_charge_reject
-print "minus_mll ","\t","=","\t",minus_mll
-print "all reject",none_photon_reject+none_2lepton_reject+different_charge_reject+minus_mll
+print "none_photon_reject","\t","=","\t",WZG.none_photon_reject
+print "none_lepton_reject","\t","=","\t",WZG.none_lepton_reject
+print "none_2lepton_reject","\t","=","\t",WZG.none_2lepton_reject
+print "different_charge_reject","\t","=","\t",WZG.different_charge_reject
+print "minus_mll ","\t","=","\t",WZG.minus_mll
+print "all reject",WZG.none_photon_reject+WZG.none_2lepton_reject+WZG.different_charge_reject+WZG.minus_mll+WZG.mll_reject+WZG.pt_reject+WZG.njet_reject
 
-print "nfile",nfile
-print "emu_pass","\t","=","\t",emu_pass
-print "ee_pass","\t","=","\t",ee_pass
-print "mumu_pass","\t","=","\t",mumu_pass
-print "btagjet_reject","\t","=","\t",btagjet_reject
-print "deltar_reject","\t","=","\t",deltar_reject
-print "N+","\t","=","\t",n_posi
-print "N-","\t","=","\t",n_minus
+
+print "emu_pass","\t","=","\t",WZG.emu_pass
+print "ee_pass","\t","=","\t",WZG.ee_pass
+print "mumu_pass","\t","=","\t",WZG.mumu_pass
+print "btagjet_reject","\t","=","\t",WZG.btagjet_reject
+print "deltar_reject","\t","=","\t",WZG.deltar_reject
+print "pt_reject","\t","=","\t",WZG.pt_reject
+print "mll_reject","\t","=","\t",WZG.mll_reject
+print "njet_reject","\t","=","\t",WZG.njet_reject
 
