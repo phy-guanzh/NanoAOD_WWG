@@ -13,7 +13,8 @@ from PhysicsTools.NanoAODTools.postprocessing.tools import deltaR
 from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collection
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 from PhysicsTools.NanoAODTools.postprocessing.modules.common.countHistogramsModule import countHistogramsProducer
-
+Np=0
+Nm=0
 test=0
 MET_pass = 0
 photon_pass = 0
@@ -27,11 +28,14 @@ ee_pass = 0
 mumu_pass = 0
 btagjet_reject = 0
 deltar_reject = 0
+mll_reject = 0
+pt_reject = 0
 none_photon_reject = 0
 different_charge_reject = 0
 minus_mll=0
 n_posi=0
 n_minus=0
+njet_reject = 0
 class WZG_Producer(Module):
     def __init__(self):
         pass
@@ -107,6 +111,9 @@ class WZG_Producer(Module):
         global emu_pass 
         global mumu_pass 
         global btagjet_reject
+        global mll_reject
+        global njet_reject
+        global pt_reject
         global deltar_reject
         global test
         global none_photon_reject
@@ -141,6 +148,9 @@ class WZG_Producer(Module):
                 electrons_select.append(i)
                 electron_pass += 1
 
+        if len(electrons_select)+len(muons_select) != 2:      #reject event if there are not exactly two leptons
+            none_2lepton_reject += 1
+            return False
 
         # selection on photons
         for i in range(0,len(photons)):
@@ -160,7 +170,7 @@ class WZG_Producer(Module):
                     pass_lepton_dr_cut = False
             if not pass_lepton_dr_cut:
                 continue
-	    if photons[i].cutBased >=2:
+	    if photons[i].cutBasedBitmap >=2:
             	photons_select.append(i)
             	photon_pass += 1
 
@@ -172,10 +182,6 @@ class WZG_Producer(Module):
         #if len(electrons_select)==0 and len(muons_select)==0:      #reject event if there is no lepton selected in the event
         #    none_lepton_reject += 1
         #    return False
-        
-        if len(electrons_select)+len(muons_select) != 2:      #reject event if there are not exactly two leptons
-            none_2lepton_reject += 1
-            return False
 	njets = -1 
         for i in range(0,len(jets)):
             btag_cut = False
@@ -209,7 +215,9 @@ class WZG_Producer(Module):
                 btagjet_reject += 1
                 return False
 	njets = njets + 1
-	if njets >2 : return False
+	if njets >2 : 
+		njet_reject +=1
+		return False
         #dilepton mass selection and channel selection
         channel = 0 
         # emu:     1
@@ -230,8 +238,12 @@ class WZG_Producer(Module):
                 dileptonmass_emu = (muons[muons_select[0]].p4() + electrons[electrons_select[0]].p4()).M()
                 dileptongmass_emu = (muons[muons_select[0]].p4() + electrons[electrons_select[0]].p4()+photons[photons_select[0]].p4()).M()
                 dileptonpt_emu = (muons[muons_select[0]].p4() + electrons[electrons_select[0]].p4()).Pt()
-                if dileptonmass >= 50 and dileptonmass <= 100: return False
-                if dileptonpt <= 40: return False
+                if dileptonmass >= 50 and dileptonmass <= 100: 
+			mll_reject +=1
+			return False
+                if dileptonpt <= 40: 
+			pt_reject +=1
+			return False
                 # if dileptonmass >= 60 and dileptonmass <= 120:
                 # print "a=",photons_select, "e=",electrons_select, "mu=",muons_select
             else:
@@ -240,6 +252,7 @@ class WZG_Producer(Module):
             if dileptonmass > 0: 
                 channel = 1
                 emu_pass += 1
+		print emu_pass
             else :
                 minus_mll +=1
 		return False
@@ -256,14 +269,19 @@ class WZG_Producer(Module):
                 dileptonmass_ee = (electrons[electrons_select[0]].p4() + electrons[electrons_select[1]].p4()).M()
                 dileptongmass_ee = (electrons[electrons_select[0]].p4() + electrons[electrons_select[1]].p4()+photons[photons_select[0]].p4()).M()
                 dileptonpt_ee = (electrons[electrons_select[0]].p4() + electrons[electrons_select[1]].p4()).Pt()
-                if dileptonmass >= 50 and dileptonmass <= 100: return False
-                if dileptonpt <= 40: return False
+                if dileptonmass >= 50 and dileptonmass <= 100: 
+			mll_reject +=1
+			return False
+                if dileptonpt <= 40: 
+			pt_reject +=1
+			return False
             else:
                 different_charge_reject +=1
 		return False
             if dileptonmass > 0:
                 channel = 2
                 ee_pass += 1
+		print ee_pass
             else:
                 minus_mll +=1
 		return False
@@ -281,8 +299,12 @@ class WZG_Producer(Module):
                 dileptonmass_mumu = (muons[muons_select[0]].p4() + muons[muons_select[1]].p4()).M()
                 dileptongmass_mumu = (muons[muons_select[0]].p4() + muons[muons_select[1]].p4()+photons[photons_select[0]].p4()).M()
                 dileptonpt_mumu = (muons[muons_select[0]].p4() + muons[muons_select[1]].p4()).Pt()
-                if dileptonmass >= 50 and dileptonmass <= 100: return False
-                if dileptonpt <= 40: return False
+                if dileptonmass >= 50 and dileptonmass <= 100: 
+			mll_reject +=1
+			return False
+                if dileptonpt <= 40: 
+			pt_reject +=1
+			return False
                 # print "a=",photons_select, "e=",electrons_select, "mu=",muons_select
             else:
                 different_charge_reject +=1
@@ -290,6 +312,7 @@ class WZG_Producer(Module):
             if dileptonmass > 0: 
                 channel = 3
                 mumu_pass += 1
+		print mumu_pass
             else :
                 minus_mll +=1
 		return False
