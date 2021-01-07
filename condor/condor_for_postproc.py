@@ -60,7 +60,8 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
 
 
         # prepare submit code
-        Proxy_path = "/local-scratch/zguan/proxy/x509up_u100814"
+        Proxy_path = "http://stash.osgconnect.net/+zguan/x509up_u100814"
+        Proxy = "x509up_u100814"
         with open ("submit_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".jdl","w+") as f:
             f.write("universe \t = vanilla\n")
             f.write("executable \t = wrapper_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".sh\n")
@@ -84,12 +85,12 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
         # prepare shell
         with open ("wrapper_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".sh","w+") as f:
             f.write("#!/bin/bash\n\n")
-            # f.write("voms-proxy-info -all\n")
-            f.write("voms-proxy-info -all -file "+Proxy_path+"\n")
+            f.write("wget "+Proxy_path+Proxy+"\n")
+            f.write("voms-proxy-info -all -file "+Proxy+"\n")
             f.write("source /cvmfs/cms.cern.ch/cmsset_default.sh\n\n")
             f.write("initial_path=${PWD}\n")
-            f.write("scramv1 project CMSSW CMSSW_10_6_0\n")
-            f.write("cd CMSSW_10_6_0/src\n")
+            f.write("scramv1 project CMSSW CMSSW_10_2_22\n")
+            f.write("cd CMSSW_10_2_22/src\n")
             f.write("eval `scramv1 runtime -sh`\n\n")
             f.write("git clone https://github.com/phy-guanzh/nanoAOD-WVG.git PhysicsTools/NanoAODTools\n")
             f.write("scram b -j4\n\n")
