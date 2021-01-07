@@ -32,9 +32,15 @@ elif args.name == 'TTWJetsToLNu':
 elif args.name == 'ttZJets':
     if args.year == '2016': dataset = "/ttZJets_13TeV_madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"
 elif args.name == 'SingleElectron':
-    if args.year == '2016': dataset = "/SingleElectron/Run2016C-05Feb2018-v2/NANOAOD"
+    if args.year == '2018': dataset = "/SingleElectron/Run2016C-05Feb2018-v2/NANOAOD"
+elif args.name == 'MuonEG':
+    if args.year == '2018': dataset = "/MuonEG/Run2018A-Nano1June2019-v1/NANOAOD/"
 elif args.name == 'SingleMuon':
-    if args.year == '2018': dataset = "/SingleMuon/Run2018C-Nano02Dec2019-v2/NANOAOD"
+    if args.year == '2018': dataset = "/MuonEG/Run2018A-Nano1June2019-v1/NANOAOD/"
+elif args.name == 'EGamma':
+    if args.year == '2018': dataset = "/SingleMuon/Run2018A-Nano1June2019-v1/NANOAOD/"
+elif args.name == 'DoubleMuon':
+    if args.year == '2018': dataset = "/DoubleMuon/Run2018A-Nano1June2019-v1/NANOAOD/"
 else:
     print "unknown dataset name"
     sys.exit(0)
@@ -60,7 +66,7 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
 
 
         # prepare submit code
-        Proxy_path = "http://stash.osgconnect.net/+zguan/x509up_u100814"
+        Proxy_path = "root://eosuser.cern.ch//eos/user/z/zguan/www/"
         Proxy = "x509up_u100814"
         with open ("submit_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".jdl","w+") as f:
             f.write("universe \t = vanilla\n")
@@ -85,7 +91,7 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
         # prepare shell
         with open ("wrapper_"+args.name+"_"+args.year+"_file"+str(i)+"_"+filename+".sh","w+") as f:
             f.write("#!/bin/bash\n\n")
-            f.write("wget "+Proxy_path+Proxy+"\n")
+            f.write("xrdcp "+Proxy_path+Proxy+"\n")
             f.write("voms-proxy-info -all -file "+Proxy+"\n")
             f.write("source /cvmfs/cms.cern.ch/cmsset_default.sh\n\n")
             f.write("initial_path=${PWD}\n")
@@ -96,7 +102,7 @@ with open ("filepath_"+args.name+"_"+args.year+".txt","r") as f0:
             f.write("scram b -j4\n\n")
             f.write("cd PhysicsTools/NanoAODTools/WZG_selector\n")
             # f.write("cp ${initial_path}/filepath_"+args.name+"_"+args.year+".txt .\n" )
-            f.write("python WZG_postproc.py -m condor -n "+args.name+" -y "+args.year+" -f "+line+"\n\n")
+            f.write("python WZG_postproc.py -m local -n "+args.name+" -y "+args.year+" -f "+"root://cmsxrootd.fnal.gov/"+line+"\n\n")
             f.write("cp *.root ${initial_path}")
             # f.write("python ${CMSSW_BASE}/src/PhysicsTools/NanoAODTools/scripts/haddnano.py test.root *.root\n")
             # f.write("cp test.root ${initial_path}\n")
