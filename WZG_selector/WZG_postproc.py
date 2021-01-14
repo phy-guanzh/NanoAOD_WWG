@@ -124,4 +124,5 @@ print "mll_reject","\t","=","\t",WZG.mll_reject
 print "njet_reject","\t","=","\t",WZG.njet_reject
 print "N+","\t","=","\t",WZG.n_posi
 print "N-","\t","=","\t",WZG.n_minus
+print "n_num","\t","=","\t",WZG.n_num
 
