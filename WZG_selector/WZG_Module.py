@@ -78,7 +78,7 @@ class WZG_Producer(Module):
         self.out.branch("dilepton_mass",  "F")
         self.out.branch("dilepton_g_mass",  "F")
         self.out.branch("dilepton_pt",  "F")
-        #self.out.branch("Generator_weight","F")
+        self.out.branch("Generator_weight","F")
         # self.out.branch("max_CMVA","F")
         # self.out.branch("max_CSVV2","F")
         # self.out.branch("max_DeepB","F")
