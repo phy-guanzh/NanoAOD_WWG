@@ -127,6 +127,11 @@ class WZG_Producer(Module):
 	global n_num
 	
 	n_num +=1
+	if event.Generator_weight > 0 :
+            n_posi +=1
+        else:
+            n_minus +=1
+
 	#if event.Generator_weight > 0 :
 	#    n_posi +=1
 	#else:
@@ -439,8 +444,8 @@ print "ee_pass","\t","=","\t",ee_pass
 print "mumu_pass","\t","=","\t",mumu_pass
 print "btagjet_reject","\t","=","\t",btagjet_reject
 print "deltar_reject","\t","=","\t",deltar_reject
-print "N+","\t","=","\t",n_posi
-print "N-","\t","=","\t",n_minus
+print "n_posi","\t","=","\t",n_posi
+print "n_minus","\t","=","\t",n_minus
 print "n_num","\t","=","\t",n_num
 
 
