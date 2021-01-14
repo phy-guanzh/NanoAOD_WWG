@@ -36,6 +36,7 @@ minus_mll=0
 n_posi=0
 n_minus=0
 njet_reject = 0
+n_num = 0
 class WZG_Producer(Module):
     def __init__(self):
         pass
@@ -123,10 +124,13 @@ class WZG_Producer(Module):
         global n_posi 
         global n_minus 
         # selection on MET. Pass to next event directly if fail.
-	if event.Generator_weight > 0 :
-	    n_posi +=1
-	else:
-	    n_minus +=1
+	global n_num
+	
+	n_num +=1
+	#if event.Generator_weight > 0 :
+	#    n_posi +=1
+	#else:
+	#    n_minus +=1
 	
         if  event.MET_pt>60:
             MET_pass += 1
@@ -176,8 +180,8 @@ class WZG_Producer(Module):
                     pass_lepton_dr_cut = False
             if not pass_lepton_dr_cut:
                 continue
+	    if photons[i].cutBasedBitmap >=2:
 	    #if photons[i].cutBased >=2:
-	    if photons[i].cutBased >=2:
             	photons_select.append(i)
             	photon_pass += 1
 
@@ -437,5 +441,6 @@ print "btagjet_reject","\t","=","\t",btagjet_reject
 print "deltar_reject","\t","=","\t",deltar_reject
 print "N+","\t","=","\t",n_posi
 print "N-","\t","=","\t",n_minus
+print "n_num","\t","=","\t",n_num
 
 
