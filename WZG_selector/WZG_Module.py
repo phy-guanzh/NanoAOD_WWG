@@ -143,10 +143,10 @@ class WZG_Producer(Module):
 	global n_num
 	
 	n_num +=1
-	#if event.Generator_weight > 0 :
-        #    n_posi +=1
-        #else:
-        #    n_minus +=1
+	if event.Generator_weight > 0 :
+            n_posi +=1
+        else:
+            n_minus +=1
 
 	#if event.Generator_weight > 0 :
 	#    n_posi +=1
@@ -201,8 +201,8 @@ class WZG_Producer(Module):
                     pass_lepton_dr_cut = False
             if not pass_lepton_dr_cut:
                 continue
-	    if photons[i].cutBasedBitmap >=1: #1==medium
-	    #if photons[i].cutBased >=2:
+	    #if photons[i].cutBasedBitmap >=1: #1==medium
+	    if photons[i].cutBased >=2:
             	photons_select.append(i)
             	photon_pass += 1
 
