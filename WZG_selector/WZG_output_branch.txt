@@ -3,7 +3,7 @@ drop * # start with all
 keep *electron*
 keep *muon*
 keep *photon*
-keep MET
+keep MET*
 keep event
 keep dilepton*
 keep *weight*
