@@ -201,7 +201,7 @@ class WZG_Producer(Module):
                     pass_lepton_dr_cut = False
             if not pass_lepton_dr_cut:
                 continue
-	    if photons[i].cutBasedBitmap >=2:
+	    if photons[i].cutBasedBitmap >=1: #1==medium
 	    #if photons[i].cutBased >=2:
             	photons_select.append(i)
             	photon_pass += 1
