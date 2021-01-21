@@ -10,4 +10,5 @@ keep *weight*
 keep wplus*
 keep wminus*
 keep Njets*
+keep lepton*
 # keep max*
